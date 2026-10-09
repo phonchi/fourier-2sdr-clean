@@ -1,0 +1,38 @@
+{
+  "analysis_id": "split_sure_whitened_calibration_v1",
+  "shape": [
+    32,
+    32
+  ],
+  "truth": "(p*,q*,r*) = (4,4,4): four diagonal directions of a random 4x4 Kronecker envelope, generated in whitened Fourier coordinates",
+  "signal_variance": 16,
+  "signal_variance_rationale": "with unit whitened noise, the ideal nested risk is pq + 16[4 - min(p,q,4)], so (4,4) is the unique minimizer (risk 16 < mean-only 64); 16 equals the per-direction cost of the extra coordinates of the 4x4 envelope",
+  "noise": "separable periodic AR(1), mean-one spectrum (fourier_2sdr.whitening.periodic_ar1_spectrum), observed = S * (signal + white)",
+  "rho_primary": 0.6,
+  "rho_sensitivity": [
+    0.3,
+    0.8
+  ],
+  "grid": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32
+  ],
+  "n_fit": 500,
+  "n_holdout": 500,
+  "replicates": 100,
+  "geometry_seed": 20260807,
+  "seed": 20261007,
+  "candidates": "mean-only plus MPCA for every grid pair, fitted to whitened data (estimator S P S^-1) or raw data (estimator P)",
+  "scores": [
+    "corrected_split (corrected holdout score, original scale)",
+    "uncorrected_holdout",
+    "fit_sample_plugin",
+    "tu_whitened (whitened candidates only; whitened loss)"
+  ],
+  "reference": "analytic conditional risk on the original scale given the fitted candidate",
+  "seed_rule": "replicate generator seed = seed + 1000*round(10*rho) + replicate"
+}

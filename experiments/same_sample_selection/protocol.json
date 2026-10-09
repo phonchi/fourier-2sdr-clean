@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "analysis_id": "fourier_rank_selection_advantage_v1",
+  "scientific_scope": {
+    "coordinate_system": "complete_32_by_32_real_orthogonal_Fourier_coordinates",
+    "noise": "iid_N_0_1",
+    "selection_sample": "same_sample_no_split",
+    "no_split_justification": "the_original_MPCA_SURE_GDF_is_used_only_on_the_complete_real_orthogonal_white_Gaussian_model",
+    "stage2_scope": "HHI_is_direct_for_vector_PCA_and_is_a_prespecified_empirical_plugin_on_the_adaptively_fitted_MPCA_core_without_a_claim_of_direct_HHI_theorem_transfer"
+  },
+  "generator": {
+    "shape": [
+      32,
+      32
+    ],
+    "true_envelope": [
+      4,
+      4
+    ],
+    "true_core_rank": 4,
+    "core_directions": "four_diagonal_4_by_4_basis_matrices",
+    "spectra": {
+      "equal": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "geometric": [
+        1.0,
+        0.7,
+        0.5,
+        0.35
+      ]
+    },
+    "per_pixel_snr": [
+      0.04,
+      0.06
+    ],
+    "sample_sizes": [
+      625,
+      1000
+    ],
+    "eta": [
+      0.0,
+      0.02
+    ],
+    "eta_definition": "fraction_of_total_clean_variance_in_one_unit_direction_orthogonal_to_the_true_4_by_4_envelope"
+  },
+  "selection": {
+    "stage1": "same_sample_original_MPCA_SURE",
+    "stage1_construction": "nested_upper_envelope_truncation_of_one_over_specified_fit",
+    "stage1_candidates": [
+      2,
+      4,
+      8
+    ],
+    "mpca_max_iter": 250,
+    "mpca_tolerance": 1e-05,
+    "stage2": "HHI_GIC_2_over_n",
+    "methods": [
+      "two_sdr_sure_hhi",
+      "vector_pca_hhi",
+      "mpca_sure_full_core",
+      "fixed_true_rank_diagnostic"
+    ],
+    "tie_rules": {
+      "stage1": "minimum_SURE_then_minimum_p_times_q_then_p_then_q",
+      "HHI": "minimum_GIC_then_smaller_rank_within_numeric_tolerance"
+    }
+  },
+  "modes": {
+    "smoke": {
+      "seed_namespace": 731001,
+      "replicates": 1,
+      "cells": [
+        {
+          "n": 96,
+          "snr": 0.04,
+          "spectrum": "equal",
+          "eta": 0.0
+        }
+      ]
+    },
+    "discovery": {
+      "seed_namespace": 731101,
+      "replicates": 2,
+      "cell_filter": {
+        "sample_sizes": [
+          625,
+          1000
+        ],
+        "per_pixel_snr": [
+          0.04,
+          0.06
+        ],
+        "spectra": [
+          "equal",
+          "geometric"
+        ],
+        "eta": [
+          0.0,
+          0.02
+        ]
+      }
+    },
+    "formal": {
+      "seed_namespace": 731901,
+      "replicates": 100,
+      "cell_filter": {
+        "sample_sizes": [
+          625,
+          1000
+        ],
+        "per_pixel_snr": [
+          0.04,
+          0.06
+        ],
+        "spectra": [
+          "equal",
+          "geometric"
+        ],
+        "eta": [
+          0.0,
+          0.02
+        ]
+      },
+      "primary_eta": 0.0,
+      "secondary_eta": 0.02
+    }
+  },
+  "confirmation": {
+    "paired_differences": [
+      "two_sdr_sure_hhi_minus_vector_pca_hhi",
+      "two_sdr_sure_hhi_minus_mpca_sure_full_core"
+    ],
+    "confidence_level": 0.95,
+    "interval": "paired_Student_t",
+    "formal_replicates_per_cell": 100,
+    "t_critical_df_99": 1.9842169515086827,
+    "success_rule": "for_every_eta_0_primary_cell_both_upper_confidence_bounds_are_strictly_below_zero",
+    "eta_0p02_cells": "secondary_generic_ambient_misspecification_sensitivity_only",
+    "discovery_is_confirmatory": false
+  },
+  "diagnostics_policy": {
+    "formal_decision_scope": "paired_conditional_risk_of_the_prespecified_capped_iteration_algorithms",
+    "censoring_ambiguity_or_nonconvergence": "does_not_change_the_algorithm_risk_decision_but_blocks_any_rank_recovery_claim",
+    "required_reporting": [
+      "stage1_candidate_boundary_frequency",
+      "core_and_vector_GIC_upper_bound_frequency",
+      "core_and_vector_GIC_ambiguity_frequency",
+      "selected_and_candidate_MPCA_nonconvergence_frequency"
+    ]
+  }
+}

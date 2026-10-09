@@ -1,0 +1,15 @@
+{
+  "all_twosdr_fits_converged": true,
+  "boundary_identities_met": true,
+  "claim_boundary": "2SDR is evaluated as a structured subfamily of unrestricted PCA; a favorable interior result is finite-sample estimation evidence, not a larger representation-family claim.",
+  "core_reduction_comparisons": 27,
+  "core_reduction_criterion_met": true,
+  "core_reduction_strict_comparisons": 27,
+  "criterion_interpretation": "Each strict comparison requires the upper endpoint of the paired Student-t 95% Monte Carlo interval for the 2SDR-minus-comparator population-risk difference to be below zero.",
+  "formal_full_design_evaluated": true,
+  "structured_efficiency_comparisons": 18,
+  "structured_efficiency_criterion_met": true,
+  "structured_efficiency_strict_comparisons": 18,
+  "twosdr_fit_count": 4500,
+  "twosdr_nonconverged_count": 0
+}

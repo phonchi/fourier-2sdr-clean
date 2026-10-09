@@ -1,0 +1,39 @@
+{
+  "files": {
+    "paper1_70s_table.tex": {
+      "bytes": 704,
+      "sha256": "0524acf207c193383368ff4d6cd00a10868094cd00d0c0cd240fc28b546f3d6e"
+    },
+    "paper1_colored_70s.tex": {
+      "bytes": 2355,
+      "sha256": "ba5117e0a8d2adc14fe93317823344f8ba27e0d37de443994e3291830efd16cb"
+    },
+    "paper1_colored_70s_partA.tex": {
+      "bytes": 2682,
+      "sha256": "85de72d6979e74ec591351bde3d7f5282b6d8cd88944f1fb382c9f0ada8ea2b7"
+    },
+    "paper1_colored_calibration.tex": {
+      "bytes": 1088,
+      "sha256": "544b7eac283caf6687d09a6666116403b40cd7d32db8e3c90ae74cee6be09401"
+    },
+    "paper_70s_montage.png": {
+      "bytes": 2064753,
+      "sha256": "56d1bcc3524931849e81f87c39921258797bd31b793bbfae419a6f5dcd17b10f"
+    },
+    "supplement_projection_family_risk.pdf": {
+      "bytes": 34635,
+      "sha256": "672213da228197f7bd7d9b151349b6c9c501e82c174f1d396c7f9dae0a5c8a23"
+    },
+    "supplement_projection_family_table.tex": {
+      "bytes": 847,
+      "sha256": "55fbb271c2ca8ef140e69c58074862e39f0cbe0d4607e52e019268ab6eba7b9c"
+    },
+    "table3_same_sample_risk.tex": {
+      "bytes": 1049,
+      "sha256": "93c37a327954edbbe6b869a9f5c2707473c2b10cf50e42fcfe3f1d3be78e3895"
+    }
+  },
+  "schema_version": 2,
+  "source": "reference copies of the generated tables and figures; see scripts/make_paper_assets.py",
+  "study": "paper-assets"
+}

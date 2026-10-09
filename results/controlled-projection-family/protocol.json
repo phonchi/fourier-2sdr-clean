@@ -1,0 +1,86 @@
+{
+  "analysis_id": "controlled_projection_family_v2",
+  "scientific_question": "Do the PCA full-mode and MPCA full-core endpoints agree numerically with their 2SDR boundary representations, and does an interior row-column-core representation estimate matrix-structured signal more accurately at finite sample size?",
+  "claim_boundary": "The experiment compares finite-sample estimation inside a structured subfamily. It does not assert that the 2SDR representation family is larger than unrestricted vector PCA.",
+  "matrix_shape": [
+    24,
+    8
+  ],
+  "ambient_dimension": 192,
+  "scenarios": [
+    {
+      "id": "pca_boundary",
+      "p": 24,
+      "q": 8,
+      "r": 4,
+      "role": "full-mode PCA boundary"
+    },
+    {
+      "id": "interior_row_thin",
+      "p": 2,
+      "q": 8,
+      "r": 4,
+      "role": "interior 2SDR row-thin envelope"
+    },
+    {
+      "id": "interior_balanced",
+      "p": 4,
+      "q": 4,
+      "r": 4,
+      "role": "interior 2SDR balanced envelope"
+    },
+    {
+      "id": "interior_col_thin",
+      "p": 8,
+      "q": 2,
+      "r": 4,
+      "role": "interior 2SDR column-thin envelope"
+    },
+    {
+      "id": "mpca_boundary",
+      "p": 4,
+      "q": 4,
+      "r": 16,
+      "role": "full-core MPCA boundary"
+    }
+  ],
+  "sample_sizes": [
+    250,
+    1000,
+    5000
+  ],
+  "snr_values": [
+    0.04,
+    0.05,
+    0.06
+  ],
+  "replicates_per_combination": 100,
+  "heldout_sample_size": 1000,
+  "mpca_max_iterations": 300,
+  "mpca_projector_tolerance": 1e-08,
+  "model_seed": 20260721,
+  "master_seed": 20260721,
+  "replicate_seed_derivation": "SeedSequence([master_seed, scenario_index, round(snr * 1000000), sample_size, replicate]); the SNR code depends on its numeric value, not its position in the design list",
+  "signal_eigenvalues": "equal nonzero values normalized so trace(Sigma_signal) / trace(I_192) equals the declared SNR",
+  "noise_covariance": "I_192",
+  "methods": [
+    "rank_matched_vector_pca",
+    "oracle_dimension_2sdr",
+    "oracle_dimension_mpca_full_core"
+  ],
+  "oracle_interpretation": "Oracle refers only to the supplied dimensions p, q, and r. Row, column, and core subspaces are estimated from the paired training scatter.",
+  "primary_metric": "normalized population prediction risk E||Pi_hat Z - S||^2 / E||S||^2",
+  "secondary_metrics": [
+    "normalized projector Frobenius error",
+    "clean signal capture fraction",
+    "retained noise energy and fraction",
+    "paired heldout prediction risk"
+  ],
+  "monte_carlo_summary": "Means, sample standard deviations, standard errors, and paired two-sided Student-t 95% intervals over 100 replicates.",
+  "boundary_tolerances": {
+    "projector_frobenius_difference": 1e-10,
+    "population_risk_absolute_difference": 1e-12
+  },
+  "structured_efficiency_criterion": "For all three SNR values, each of the three interior envelopes at n=250 and n=1000 must have an upper paired 95% interval endpoint below zero for 2SDR minus PCA population prediction risk.",
+  "core_reduction_criterion": "All three interior envelopes, all three SNR values, and all three sample sizes must have an upper paired 95% interval endpoint below zero for 2SDR minus full-core MPCA population prediction risk."
+}

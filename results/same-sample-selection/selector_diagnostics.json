@@ -1,0 +1,46 @@
+{
+  "all": {
+    "counts": {
+      "any_sure_candidate_nonconverged": 85,
+      "core_gic_ambiguous": 0,
+      "core_gic_upper_bound": 3,
+      "selected_mpca_nonconverged": 85,
+      "stage1_boundary": 0,
+      "vector_gic_ambiguous": 0,
+      "vector_gic_upper_bound": 0
+    },
+    "rates": {
+      "any_sure_candidate_nonconverged": 0.053125,
+      "core_gic_ambiguous": 0.0,
+      "core_gic_upper_bound": 0.001875,
+      "selected_mpca_nonconverged": 0.053125,
+      "stage1_boundary": 0.0,
+      "vector_gic_ambiguous": 0.0,
+      "vector_gic_upper_bound": 0.0
+    },
+    "replicates": 1600
+  },
+  "formal_decision_scope": "algorithm-level paired conditional clean-prediction risk",
+  "primary_eta_0": {
+    "counts": {
+      "any_sure_candidate_nonconverged": 42,
+      "core_gic_ambiguous": 0,
+      "core_gic_upper_bound": 1,
+      "selected_mpca_nonconverged": 42,
+      "stage1_boundary": 0,
+      "vector_gic_ambiguous": 0,
+      "vector_gic_upper_bound": 0
+    },
+    "rates": {
+      "any_sure_candidate_nonconverged": 0.0525,
+      "core_gic_ambiguous": 0.0,
+      "core_gic_upper_bound": 0.00125,
+      "selected_mpca_nonconverged": 0.0525,
+      "stage1_boundary": 0.0,
+      "vector_gic_ambiguous": 0.0,
+      "vector_gic_upper_bound": 0.0
+    },
+    "replicates": 800
+  },
+  "rank_recovery_claim_allowed": false
+}

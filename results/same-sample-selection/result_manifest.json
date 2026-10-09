@@ -1,0 +1,27 @@
+{
+  "files": {
+    "decision.json": {
+      "bytes": 263,
+      "sha256": "07cbe6f58ea36ed5f105cd929bbb57d2ae700250c49fb88d9f019f7b8ac92b19"
+    },
+    "paired_summary.csv": {
+      "bytes": 5397,
+      "sha256": "84054b6634e5a04c091c5be22e581dba7d037202b7a8793a90c62c974c8186b3"
+    },
+    "per_replicate.csv": {
+      "bytes": 477839,
+      "sha256": "34de9858909516cc83b607dda31b9c18cbec5ecf0d706f45aa931933a830f158"
+    },
+    "protocol.json": {
+      "bytes": 3899,
+      "sha256": "078cfe611a366974e37eca4a7aabfc1d0b375446d28d38c3a8ebbf0708a0a7b3"
+    },
+    "selector_diagnostics.json": {
+      "bytes": 1332,
+      "sha256": "0b3b15c7bedab6f986eedb8fcd9f6d72acb608c5e7c0e65c3ba11aa124a71ee5"
+    }
+  },
+  "schema_version": 2,
+  "source": "Section 6.3; formal run formal_nested_v1/attempt-20260804T024153Z",
+  "study": "same-sample-selection"
+}

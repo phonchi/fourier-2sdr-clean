@@ -1,0 +1,19 @@
+{
+  "files": {
+    "rho03/candidate_scores.csv": {
+      "bytes": 888344,
+      "sha256": "51cb7c8eb6e1ea02867fe63e57a14710a6f68796c0f93e8aaacf22988384a9b7"
+    },
+    "rho06/candidate_scores.csv": {
+      "bytes": 889873,
+      "sha256": "9f799f0a04397244ed23b10a6f96ed487d3f9f2cd6c75ed88271fc35052ed657"
+    },
+    "rho08/candidate_scores.csv": {
+      "bytes": 882641,
+      "sha256": "c87ef65fc64517a67b9b153151b132068952a153bad309eb357ac73898dd4b83"
+    }
+  },
+  "schema_version": 2,
+  "source": "Section 6.5 calibration; formal runs formal_rho03, formal_rho06, formal_rho08",
+  "study": "whitened-calibration"
+}

@@ -1,0 +1,35 @@
+{
+  "files": {
+    "metrics.csv": {
+      "bytes": 929,
+      "sha256": "4840fb6f89d7c421444b9b383c98ab98075751d2937fea9736d6e1b9761ae9c5"
+    },
+    "paper_montage.png": {
+      "bytes": 2064753,
+      "sha256": "56d1bcc3524931849e81f87c39921258797bd31b793bbfae419a6f5dcd17b10f"
+    },
+    "per_view_differences.csv": {
+      "bytes": 8261,
+      "sha256": "e50013ea84b020ad741545c42dc2ec6b538f8397d963f333f39914fa17f35f31"
+    },
+    "per_view_metrics.csv": {
+      "bytes": 26176,
+      "sha256": "f45fd25a8b9c76757ec4e4159445c54aa381b7dc3b9d9ca027b87913ab29f353"
+    },
+    "protocol.json": {
+      "bytes": 3946,
+      "sha256": "425548d6a10253589463ba7c42e8995eaa4847f3b66818c1ab2aab8229dfad11"
+    },
+    "selection.csv": {
+      "bytes": 825,
+      "sha256": "c560ac7e2c759bebded922d5cf7f81df6d4bb6fe31db239ec248cb2ddd0511cd"
+    },
+    "summary.json": {
+      "bytes": 3453,
+      "sha256": "aa72c1ae234c992a854e4418046752fd4f2da74cabd350890e82abb82c64f6a7"
+    }
+  },
+  "schema_version": 2,
+  "source": "Section 6.4; formal run formal_blockalgebra_v2/attempt-20260803T081656Z",
+  "study": "seventy-s-same-sample"
+}

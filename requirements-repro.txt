@@ -1,0 +1,7 @@
+# Verified with Python 3.13.12
+# Exact environment recorded by the authoritative attempts.
+numpy==2.4.3
+torch==2.11.0+cu128
+scipy==1.17.1
+Pillow==12.1.1
+matplotlib==3.10.9

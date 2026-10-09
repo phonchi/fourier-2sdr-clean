@@ -1,0 +1,7 @@
+{
+  "primary_comparisons": 16,
+  "rank_recovery_claim_allowed": false,
+  "rule": "every eta=0 primary cell has upper paired 95% CI below zero for 2SDR-PCA and 2SDR-MPCA",
+  "scope": "algorithm-level paired conditional clean-prediction risk",
+  "status": "pass"
+}

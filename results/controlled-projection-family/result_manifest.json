@@ -1,0 +1,27 @@
+{
+  "files": {
+    "decision.json": {
+      "bytes": 840,
+      "sha256": "fbfd91413385182b9dadaff0a34156b16365d57ea8ad85be3aaf2f9749ee2877"
+    },
+    "paired_summary.csv": {
+      "bytes": 78893,
+      "sha256": "e55f205fc23946ce2a441abcb5501030a82c76c6867993da13b645bc07bf6a92"
+    },
+    "population_projection_risk.pdf": {
+      "bytes": 34635,
+      "sha256": "672213da228197f7bd7d9b151349b6c9c501e82c174f1d396c7f9dae0a5c8a23"
+    },
+    "protocol.json": {
+      "bytes": 3211,
+      "sha256": "0fa0e0a4631949d220797476abfbb0529375b9e61a5c700b8b11208565f023cc"
+    },
+    "summary.json": {
+      "bytes": 2013,
+      "sha256": "1d205c9e6419f6f3a716dd4a0919c700f9a63e87d8a4d8c263521650895bb149"
+    }
+  },
+  "schema_version": 2,
+  "source": "Section 6.2; formal run controlled_projection_family_snr004_006_seed20260721_r100",
+  "study": "controlled-projection-family"
+}

@@ -1,0 +1,34 @@
+\begin{table}[tbp]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\caption{Complete-estimator selection by the corrected holdout score on the 70S particles under white and colored noise, over 10 noise realizations at $\rho=0.6$ and 5 otherwise.  The corrected holdout score selected 2SDR in all 75 realizations.  The coordinate choices indicated in the group headings were consistent across all realizations within each noise condition.  The second and third columns give the most frequent selected $(p,q,r)$ and its frequency, with equally frequent triples listed together; the fourth gives the number of realizations in which the corrected holdout score selects the candidate with the lowest empirical test MSE among all considered candidates.  The last three columns give mean test MSE $\times10^{4}$ for the selected 2SDR estimator and for the PCA and full-core MPCA candidates with the best score.  Under white noise raw and whitened fits coincide up to numerical error and are counted as separate candidates.}
+\label{tab:colored-70s}
+\begin{tabular}{rllrrrr}
+\toprule
+ & & & selected test-MSE & \multicolumn{3}{c}{test MSE $\times10^{4}$}\\
+\cmidrule(lr){5-7}
+$s_0$ & selected $(p,q,r)$ & frequency & minimizer (count) & 2SDR & PCA & MPCA\\
+\midrule
+\multicolumn{7}{@{}l}{\itshape White noise ($\rho=0$)}\\
+.04 & $(24,20,49)$ & (4/5) & 5/5 & 0.949 & 2.027 & 2.371\\
+.05 & $(24,24,49)$ & (4/5) & 5/5 & 0.801 & 1.762 & 2.099\\
+.06 & $(24,24,49)$ & (5/5) & 4/5 & 0.696 & 1.554 & 1.865\\
+\addlinespace
+\multicolumn{7}{@{}l}{\itshape Colored noise ($\rho=0.3$, raw selected)}\\
+.04 & $(40,40,49)$ & (5/5) & 5/5 & 0.828 & 1.178 & 2.370\\
+.05 & $(40,40,49)$ & (5/5) & 5/5 & 0.698 & 1.003 & 2.089\\
+.06 & $(40,40,49)$ & (5/5) & 5/5 & 0.608 & 0.878 & 1.859\\
+\addlinespace
+\multicolumn{7}{@{}l}{\itshape Colored noise ($\rho=0.6$, whitened selected)}\\
+.04 & $(40,32,49)$ & (7/10) & 10/10 & 0.807 & 0.996 & 2.634\\
+.05 & $(40,40,49)$/$(48,32,49)$ & (4/10) & 7/10 & 0.679 & 0.829 & 2.325\\
+.06 & $(40,40,49)$ & (5/10) & 8/10 & 0.592 & 0.716 & 2.065\\
+\addlinespace
+\multicolumn{7}{@{}l}{\itshape Colored noise ($\rho=0.8$, whitened selected)}\\
+.04 & $(40,32,49)$ & (3/5) & 5/5 & 0.985 & 1.584 & 3.156\\
+.05 & $(48,40,49)$ & (2/5) & 1/5 & 0.831 & 1.316 & 2.990\\
+.06 & $(48,40,49)$ & (5/5) & 5/5 & 0.731 & 1.131 & 2.850\\
+\bottomrule
+\end{tabular}
+\end{table}

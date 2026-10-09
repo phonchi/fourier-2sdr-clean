@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "analysis_id": "synthetic_70s_fourier_no_split_sure_hhi_gic_v1",
+  "scientific_scope": {
+    "application": "same_sample_rank_selection_and_reconstruction_on_one_fixed_synthetic_70S_instance",
+    "selection_sample": "same_5000_particles_no_split",
+    "evaluation_sample": "same_5000_particles",
+    "inference": "descriptive_application_only",
+    "coordinate_system": "complete_130_by_130_separable_real_orthogonal_Fourier_coordinates",
+    "coordinate_execution": "orthonormal_rfft2_then_conjugacy_aware_block_algebra_to_complete_130_by_130_Q_coordinates",
+    "no_split_justification": "Tu_MPCA_SURE_requires_complete_real_coordinates_with_iid_Gaussian_noise;the_complete_separable_real_Fourier_transform_is_orthogonal",
+    "forbidden_preprocessing_before_selection": [
+      "circular_spatial_mask",
+      "radial_frequency_mask",
+      "PSD_whitening"
+    ],
+    "claim_boundary": "HHI_is_direct_for_vector_PCA_and_is_a_prespecified_empirical_plugin_on_the_adaptively_selected_MPCA_core"
+  },
+  "dataset": {
+    "orientation_setting": "uniform_50",
+    "view_count": 50,
+    "particles_per_view": 100,
+    "particle_count": 5000,
+    "shape": [
+      130,
+      130
+    ],
+    "snrs": [
+      0.04,
+      0.05,
+      0.06
+    ],
+    "seed": 0,
+    "same_particle_noise_realization_across_snr": true,
+    "contrast_convention": "white_on_black",
+    "dataset_root": "data/70s",
+    "inputs_are_read_only": true,
+    "required_inputs": [
+      "particles.mrcs",
+      "clean_observed.mrcs",
+      "manifest.json",
+      "ground_truth.jsonl"
+    ]
+  },
+  "noise_variance": {
+    "estimator": "coupled_observation_difference_without_clean_targets",
+    "base_noise_formula": "(particles_snr004-particles_snr006)/(1/sqrt(0.04)-1/sqrt(0.06))",
+    "condition_variance_formula": "mean(base_noise_squared)/snr",
+    "role": "same_sample_plug_in_for_Tu_SURE",
+    "clean_target_used": false
+  },
+  "selection": {
+    "stage1": "original_2SDR_nested_upper_envelope_Tu_SURE",
+    "upper_envelope": [
+      20,
+      20
+    ],
+    "candidate_p": {
+      "minimum": 1,
+      "maximum": 20,
+      "step": 1
+    },
+    "candidate_q": {
+      "minimum": 1,
+      "maximum": 20,
+      "step": 1
+    },
+    "mpca_max_iter": 250,
+    "mpca_tolerance": 1e-05,
+    "stage1_tie_rule": "minimum_SURE_then_minimum_p_times_q_then_p_then_q",
+    "stage2": "HHI_GIC_2_over_n",
+    "core_gic_max_rank": null,
+    "vector_pca_gic_max_rank": 100,
+    "gic_tie_rule": "minimum_GIC_then_smaller_rank_within_numeric_tolerance",
+    "methods": [
+      "two_sdr_tu_sure_hhi",
+      "vector_pca_hhi",
+      "mpca_tu_sure_full_core"
+    ]
+  },
+  "target_access": {
+    "target": "full_band_clean_observed_post_CTF_pre_noise",
+    "first_open": "after_all_three_SNR_rank_selections_are_complete",
+    "target_used_for_selection": false
+  },
+  "evaluation": {
+    "metric": "per_pixel_MSE",
+    "aggregation": [
+      "all_5000_particles",
+      "within_each_of_50_fixed_views"
+    ],
+    "paired_differences": [
+      "two_sdr_minus_vector_pca",
+      "two_sdr_minus_full_core_mpca"
+    ],
+    "negative_difference_interpretation": "lower_MSE_for_2SDR",
+    "confidence_intervals": false
+  },
+  "runtime_modes": {
+    "quick": {
+      "snrs": [
+        0.05
+      ],
+      "particles": 256,
+      "upper_envelope": [
+        8,
+        8
+      ],
+      "vector_pca_gic_max_rank": 40,
+      "purpose": "real_data_runtime_and_integration_smoke_only"
+    },
+    "formal": {
+      "snrs": [
+        0.04,
+        0.05,
+        0.06
+      ],
+      "particles": 5000,
+      "upper_envelope": [
+        20,
+        20
+      ],
+      "vector_pca_gic_max_rank": 100
+    }
+  },
+  "required_outputs": [
+    "selection.csv",
+    "sure_candidates.csv",
+    "gic_candidates.csv",
+    "metrics.csv",
+    "per_view_metrics.csv",
+    "per_view_differences.csv",
+    "selected_bases.npz",
+    "all_view_montage.png",
+    "paper_montage.png",
+    "summary.json"
+  ]
+}

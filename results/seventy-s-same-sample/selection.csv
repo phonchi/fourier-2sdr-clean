@@ -1,0 +1,4 @@
+snr,n_particles,p,q,r,pca_r,sigma2_plugin,runtime_seconds,stage1_p_right_censored,stage1_q_right_censored,core_gic_right_censored,pca_gic_right_censored,core_gic_registered_upper_bound,core_gic_admissible_upper_bound,core_gic_search_upper_bound,pca_gic_registered_upper_bound,pca_gic_admissible_upper_bound,pca_gic_search_upper_bound,core_gic_rank_ambiguous,pca_gic_rank_ambiguous,upper_envelope_converged,upper_envelope_iterations
+0.04,5000,12,11,49,17,0.014594002232687558,13.435820234008133,False,False,False,False,100,131,100,100,4998,100,False,False,True,43
+0.05,5000,14,12,49,24,0.011675201786150047,9.91897155798506,False,False,False,False,100,167,100,100,4998,100,False,False,True,19
+0.06,5000,15,14,49,28,0.009729334821791707,8.726146505039651,False,False,False,False,100,209,100,100,4998,100,False,False,True,8

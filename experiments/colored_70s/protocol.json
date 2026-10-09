@@ -1,0 +1,123 @@
+{
+  "analysis_id": "synthetic_70s_colored_noise_fourier_whitening_v1",
+  "question": "Under separable stationary colored noise, does known-spectrum whitening in Fourier coordinates (a row/column scaling that keeps the matrix structure) let the same-sample 2SDR pipeline recover its white-noise behaviour, and can the corrected holdout score choose among fitted estimators on the original pixel scale without clean targets?",
+  "dataset": {
+    "dataset_root": "data/70s",
+    "required_inputs": [
+      "particles.mrcs",
+      "clean_observed.mrcs",
+      "manifest.json",
+      "ground_truth.jsonl"
+    ],
+    "snrs": [
+      0.04,
+      0.05,
+      0.06
+    ],
+    "particle_count": 5000,
+    "view_count": 50,
+    "particles_per_view": 100,
+    "shape": [
+      130,
+      130
+    ],
+    "contrast_convention": "white_on_black",
+    "clean_role": "the clean_observed stack (identical across SNR) generates the colored observations and scores reconstructions; it is never used for selection",
+    "noise_level": "sigma2 = (base/s0) * kappa, kappa = tr(C^-1 Sigma_S)/tr(Sigma_S) with C the mean-one AR(1) spectrum and Sigma_S the ensemble-centred clean covariance: the colored condition has the same mean Mahalanobis signal energy as the white-noise reference at label s0. s0 in {.04,.05,.06} is reported as the white-reference SNR."
+  },
+  "noise": {
+    "model": "separable periodic AR(1), mean-one spectrum per axis (fourier_2sdr.whitening.periodic_ar1_spectrum), marginal variance sigma2",
+    "rho_primary": [
+      0.6
+    ],
+    "rho_sensitivity": [
+      0.3,
+      0.8
+    ],
+    "rho_rationale": "0.6 is the primary lag-one correlation; 0.3 and 0.8 are sensitivity checks; rho = 0 (flat spectrum, whitening is the identity) is the white-noise anchor",
+    "noise_only_images": 500,
+    "noise_only_rationale": "estimated-spectrum variant: independent signal-free images (one tenth of the particle count), the analogue of background regions or dark frames; separable rank-one spectrum estimate"
+  },
+  "selection": {
+    "upper": [
+      20,
+      20
+    ],
+    "pca_max_rank": 100,
+    "mpca_max_iter": 250,
+    "mpca_tolerance": 1e-05,
+    "stage1": "nested upper-envelope Tu SURE of experiments/seventy_s_same_sample (unchanged)",
+    "stage2": "HHI GIC 2/n (unchanged)",
+    "whitened_tu_sigma2": "1 (the known spectrum including sigma2 divides out)",
+    "unwhitened_tu_sigma2": "marginal sigma2 (white-noise assumption, misspecified under colored noise)",
+    "small_core_rule": "if Stage I selects a 1x1 core, r <= m-1 forces r = 0",
+    "split_grid": [
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      32,
+      40,
+      48,
+      56,
+      64
+    ],
+    "split_pca_ranks": [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100
+    ],
+    "split_pca_ranks_rationale": "uniform step 5 up to the PCA search cap 100"
+  },
+  "part_b_split": {
+    "fractions": {
+      "fit": 0.6,
+      "score": 0.2,
+      "test": 0.2
+    },
+    "stratification": "within each of the 50 views",
+    "candidates": "for raw and whitened coordinates: one upper MPCA envelope (64x64) fitted on the fit split; every nested (p,q) in split_grid^2 gives a complete 2SDR estimator with r from HHI GIC on the fit-split core, plus the full-core MPCA estimator; vector PCA with HHI GIC rank; mean-only; vector PCA with r in split_pca_ranks scored by the same split score (pixel-risk-selected PCA)",
+    "grid_rationale": "64 is half of the 130-pixel axis; the grid is the multiples of 4 to 24 then of 8 to 64",
+    "score": "corrected holdout score on the original pixel scale with known (or estimated) diagonal noise covariance; it scores the complete two-stage estimator",
+    "outputs": "part_b_candidates.csv: split_sure, score_true_risk, test_true_risk per candidate"
+  },
+  "realizations": 30,
+  "sensitivity_realizations": 10,
+  "reported_design": {
+    "rho_0.6": "first 10 realizations per s0 (s0 = .04 and .05 from run formal_rho06, s0 = .06 from run formal_rho06_s006)",
+    "rho_0.3_0.8": "5 realizations per (rho, s0)",
+    "rho_0.0": "5 realizations per s0 (white-noise anchor)",
+    "estimated_spectrum_part_b": "rho = 0.6, first 5 realizations per s0, Part B only; the separable spectrum estimated from the noise-only images replaces the known spectrum both for whitening and in the score covariance; same seeds as the known-spectrum runs, so the comparison is paired",
+    "seed_rule": "noise_base + 1000*round(10*rho) + 100*round(100*s0) + k; noise-only images use seed + 500000; the Part B split uses the same seed"
+  },
+  "seeds": {
+    "noise_base": 20261008
+  },
+  "outputs": [
+    "part_a_pixel_mse.csv",
+    "part_a_whitened_mse.csv",
+    "part_a_selections.csv",
+    "part_b_candidates.csv",
+    "montage.png",
+    "run.log"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "files": {
+    "anchor_rho00/part_a_pixel_mse.csv": {
+      "bytes": 3548,
+      "sha256": "1dc50e711169c08aa56a96672a9b052b6a021cc45f68d84e5001967e36f19340"
+    },
+    "anchor_rho00/part_a_selections.csv": {
+      "bytes": 3790,
+      "sha256": "fb71aa81da8c3a1044b4f4b17b714b5cbc3022fc27e15668d28550102daca26b"
+    },
+    "anchor_rho00/part_b_candidates.csv": {
+      "bytes": 1212119,
+      "sha256": "4d04d55e97c78579b92e73562dd29873159e9e6839dfe2cddae0d8317d69d09d"
+    },
+    "formal_rho06/part_a_pixel_mse.csv": {
+      "bytes": 9757,
+      "sha256": "aeda4ee5317c2ec611ed16e795b7385706f4c5efa94f072bef4025f3eb88abe6"
+    },
+    "formal_rho06/part_a_selections.csv": {
+      "bytes": 11585,
+      "sha256": "608c811405ade271487f791e8f3cfb8c38d903b2d6893b2b5d18338f7da4c13e"
+    },
+    "formal_rho06/part_b_candidates.csv": {
+      "bytes": 3534766,
+      "sha256": "3141a1d24f46f6a563c303de8edd99787edf339a50f0b723f7da490e54f8576b"
+    },
+    "formal_rho06_partb_estpsd/part_b_candidates.csv": {
+      "bytes": 1321122,
+      "sha256": "95f257b25efaa665ee2e391daab521f2a5f4e51a788433dada435e31c90fac7c"
+    },
+    "formal_rho06_s006/part_a_pixel_mse.csv": {
+      "bytes": 2555,
+      "sha256": "975c213b217e39f911ec3c5a69c6c89024598dad1a79246794e830ee27d2161c"
+    },
+    "formal_rho06_s006/part_a_selections.csv": {
+      "bytes": 2975,
+      "sha256": "1381c1bda96771b350cb4dc759395ebf9e44bce0ba644212bb1f02573e50cb07"
+    },
+    "formal_rho06_s006/part_b_candidates.csv": {
+      "bytes": 882566,
+      "sha256": "606e93d420b29ed2f90532a3b9005c8a6b5f0dacd2a6417a2c6799567d0fb654"
+    },
+    "sensitivity_rho03/part_a_pixel_mse.csv": {
+      "bytes": 3759,
+      "sha256": "8d8095ad95aa666aa562957a6f4387892a3abe23cc7321cc4e4115166bf245f0"
+    },
+    "sensitivity_rho03/part_a_selections.csv": {
+      "bytes": 4510,
+      "sha256": "2bc696735dff15ce3da48d33965719548a4525302e6756128ef568b5e8b8c5c4"
+    },
+    "sensitivity_rho03/part_b_candidates.csv": {
+      "bytes": 1340596,
+      "sha256": "f1fb3703615afc208185c9acc719349a87d8dbac08e2445b3812fe502b6a9334"
+    },
+    "sensitivity_rho08/part_a_pixel_mse.csv": {
+      "bytes": 3738,
+      "sha256": "d8d27ece414452d93f5fde0481b816be7807fd9004385223bb2723bce67c6851"
+    },
+    "sensitivity_rho08/part_a_selections.csv": {
+      "bytes": 4470,
+      "sha256": "589122f0fcfd842654690a4a86c9eb216096b99d7c4fac77f82773a11910dbf5"
+    },
+    "sensitivity_rho08/part_b_candidates.csv": {
+      "bytes": 1341281,
+      "sha256": "98ef6b2e8ae03c9ac97a40fd6a80acf7e9d8240550432a8f512e03f053700e9b"
+    }
+  },
+  "schema_version": 2,
+  "source": "Section 6.5 colored-noise 70S study; one folder per formal run",
+  "study": "colored-70s"
+}
