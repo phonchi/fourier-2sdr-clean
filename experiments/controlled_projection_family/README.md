@@ -1,4 +1,4 @@
-# Controlled PCA--2SDR--MPCA projection-family experiment
+# Controlled simulations with fixed structural ranks (Section 6.2)
 
 ## Scientific question
 
