@@ -287,7 +287,7 @@ def plot_population_risk(
     summary_rows: list[dict], sample_sizes: tuple[int, ...], risk_pdf: Path,
     risk_png: Path | None = None,
 ) -> None:
-    """Figure 2 of the paper: normalized population risk with 95% intervals."""
+    """Figure 2 of the paper: normalized population MSE with 95% intervals."""
     lookup = summary_lookup(summary_rows)
     labels, colors, method_labels = SCENARIO_LABELS, METHOD_COLORS, METHOD_LABELS
     n_snr = len(SNR_VALUES)
@@ -318,9 +318,9 @@ def plot_population_risk(
             ax.grid(alpha=0.25)
             ax.set_title(f"{labels[scenario]}\nSNR {snr:.2f}")
             if col_index == 0:
-                ax.set_ylabel("Normalized population risk")
+                ax.set_ylabel("Normalized population MSE")
             if row_index == n_snr - 1:
-                ax.set_xlabel("Training sample size")
+                ax.set_xlabel("Fitting sample size")
     handles, legend_labels = axes[0, 0].get_legend_handles_labels()
     fig.legend(
         handles, legend_labels, loc="upper center", ncol=3, frameon=False,
@@ -365,7 +365,7 @@ def make_figures(
             if col_index == 0:
                 ax.set_ylabel("Projector error" if row_index == 0 else "Clean-signal capture")
             if row_index == 1:
-                ax.set_xlabel("Training sample size")
+                ax.set_xlabel("Fitting sample size")
     handles, legend_labels = axes[0, 0].get_legend_handles_labels()
     fig.legend(
         handles, legend_labels, loc="upper center", ncol=3, frameon=False,

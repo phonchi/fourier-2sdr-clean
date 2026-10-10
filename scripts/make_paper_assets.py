@@ -137,7 +137,7 @@ def seventy_s_table() -> str:
 
 
 def projection_family_figure(path: Path) -> None:
-    """Figure 2: redraw the normalized population risk from the frozen summary."""
+    """Figure 2: redraw the normalized population MSE from the frozen summary."""
     sys.path.insert(0, str(ROOT / "experiments" / "controlled_projection_family"))
     import run_experiment as controlled  # noqa: E402  (needs its sibling module core.py)
 

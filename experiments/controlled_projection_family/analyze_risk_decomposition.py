@@ -203,7 +203,7 @@ def _write_figure(rows: Sequence[Mapping[str, Any]], output: Path) -> None:
             axis.grid(axis="y", alpha=0.25)
             axis.set_title(f"{scenario.replace('interior_', '').replace('_', ' ')}\nSNR {snr:.2f}")
             if col_index == 0:
-                axis.set_ylabel("Normalized population risk")
+                axis.set_ylabel("Normalized population MSE")
     handles = [
         plt.Rectangle((0, 0), 1, 1, color=colors["missed_signal"]),
         plt.Rectangle((0, 0), 1, 1, color=colors["retained_noise"]),

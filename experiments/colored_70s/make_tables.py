@@ -60,13 +60,13 @@ def calibration_table(results_dir: Path) -> str:
              r"$\rho$.  The 73 candidates comprise 36 whitened MPCA fits, 36 raw MPCA fits, "
              r"and the mean-only estimator.  The columns report the largest absolute mean score "
              r"bias, the number of candidates whose 95\% confidence intervals for mean bias "
-             r"contain zero, the frequency of selecting the analytic-risk oracle, the mean excess "
-             r"risk of the estimator selected by the uncorrected holdout residual, and the mean "
-             r"risks of the whitened $(4,4)$ and best raw candidates.  Risks are per coordinate.}",
+             r"contain zero, the frequency of selecting the analytic-MSE oracle, the mean excess "
+             r"MSE of the estimator selected by the uncorrected holdout residual, and the mean "
+             r"MSEs of the whitened $(4,4)$ and best raw candidates.  MSEs are per coordinate.}",
              r"\label{tab:colored-calibration}",
              r"\begin{tabular}{rcccccc}", r"\toprule",
              r" & largest & intervals & oracle & uncorrected & whitened $(4,4)$ & best raw\\",
-             r"$\rho$ & $|$bias$|$ & with 0 & selected & excess risk & risk & risk\\",
+             r"$\rho$ & $|$bias$|$ & with 0 & selected & excess MSE & MSE & MSE\\",
              r"\midrule"]
     calib = Path(results_dir) / "whitened-calibration"
     for tag in ("03", "06", "08"):
