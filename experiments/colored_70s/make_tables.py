@@ -56,7 +56,7 @@ def load(results_dir: Path, name: str) -> list[dict[str, str]]:
 
 def calibration_table(results_dir: Path) -> str:
     lines = [r"\begin{table}[tbp]", r"\centering", r"\small", r"\setlength{\tabcolsep}{4pt}",
-             r"\caption{Calibration of the corrected holdout score over 100 replicates per "
+             r"\caption{Accuracy of the corrected holdout score over 100 replicates per "
              r"$\rho$.  The 73 candidates comprise 36 whitened MPCA fits, 36 raw MPCA fits, "
              r"and the mean-only estimator.  The columns report the largest absolute mean score "
              r"bias, the number of candidates whose 95\% confidence intervals for mean bias "
