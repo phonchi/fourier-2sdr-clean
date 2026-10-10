@@ -7,7 +7,7 @@ build/paper_assets) under the file name used by the manuscript:
     table3_same_sample_risk.tex         Table 3   (Section 6.3)
     paper1_70s_table.tex                Table 4   (Section 6.4)
     paper_70s_montage.png               Figure 3  (Section 6.4)
-    supplement_projection_family_risk.pdf   Figure 2  (Section 6.2)
+    supplement_projection_family_risk.pdf   Figure 2  (Section 6.2; redrawn from summary.csv)
     supplement_projection_family_table.tex  Table S1  (Supplement S4)
     paper1_colored_calibration.tex      Table S2  (Supplement S7.A)
     paper1_colored_70s.tex              Table 5   (Section 6.5)
@@ -136,6 +136,21 @@ def seventy_s_table() -> str:
     return "\n".join(lines)
 
 
+def projection_family_figure(path: Path) -> None:
+    """Figure 2: redraw the normalized population risk from the frozen summary."""
+    sys.path.insert(0, str(ROOT / "experiments" / "controlled_projection_family"))
+    import run_experiment as controlled  # noqa: E402  (needs its sibling module core.py)
+
+    rows = []
+    for row in read_csv(RESULTS / "controlled-projection-family/summary.csv"):
+        row = dict(row)
+        for key in ("mean", "ci95_low", "ci95_high"):
+            row[key] = float(row[key])
+        rows.append(row)
+    sizes = tuple(sorted({int(r["sample_size"]) for r in rows}))
+    controlled.plot_population_risk(rows, sizes, path)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Regenerate the paper's tables and figures from results/.")
     parser.add_argument("--output-dir", type=Path, default=ROOT / "build/paper_assets")
@@ -149,8 +164,7 @@ def main() -> int:
     (out / "supplement_projection_family_table.tex").write_text(projection_family_table(), encoding="utf-8")
     (out / "paper1_70s_table.tex").write_text(seventy_s_table(), encoding="utf-8")
     shutil.copyfile(RESULTS / "seventy-s-same-sample/paper_montage.png", out / "paper_70s_montage.png")
-    shutil.copyfile(RESULTS / "controlled-projection-family/population_projection_risk.pdf",
-                    out / "supplement_projection_family_risk.pdf")
+    projection_family_figure(out / "supplement_projection_family_risk.pdf")
     subprocess.run([sys.executable, str(ROOT / "experiments/colored_70s/make_tables.py"),
                     "--results-dir", str(RESULTS), "--output-dir", str(out)], check=True)
 

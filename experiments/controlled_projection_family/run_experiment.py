@@ -272,20 +272,24 @@ def summary_lookup(summary_rows: list[dict]) -> dict[tuple, dict]:
     }
 
 
-def make_figures(
-    output: Path, summary_rows: list[dict], sample_sizes: tuple[int, ...],
-) -> list[Path]:
-    figure_dir = output / "figures"
-    figure_dir.mkdir()
-    lookup = summary_lookup(summary_rows)
-    labels = {
-        "interior_row_thin": "row-thin (2,8,4)",
-        "interior_balanced": "balanced (4,4,4)",
-        "interior_col_thin": "column-thin (8,2,4)",
-    }
-    colors = {"pca": "#4C78A8", "twosdr": "#E45756", "mpca": "#59A14F"}
-    method_labels = {"pca": "PCA", "twosdr": "2SDR", "mpca": "MPCA"}
+SCENARIO_LABELS = {
+    "interior_row_thin": "smaller row rank (2,8,4)",
+    "interior_balanced": "equal row and column ranks (4,4,4)",
+    "interior_col_thin": "smaller column rank (8,2,4)",
+}
+METHOD_COLORS = {"pca": "#4C78A8", "twosdr": "#E45756", "mpca": "#59A14F"}
+METHOD_LABELS = {"pca": "PCA", "twosdr": "2SDR", "mpca": "MPCA"}
+# Fixed PDF metadata so that a figure redrawn from the same numbers is byte-identical.
+PDF_METADATA = {"CreationDate": None, "Creator": None, "Producer": None}
 
+
+def plot_population_risk(
+    summary_rows: list[dict], sample_sizes: tuple[int, ...], risk_pdf: Path,
+    risk_png: Path | None = None,
+) -> None:
+    """Figure 2 of the paper: normalized population risk with 95% intervals."""
+    lookup = summary_lookup(summary_rows)
+    labels, colors, method_labels = SCENARIO_LABELS, METHOD_COLORS, METHOD_LABELS
     n_snr = len(SNR_VALUES)
     fig, axes = plt.subplots(
         n_snr, 3, figsize=(11.2, 2.75 * n_snr + 0.8), sharex=True,
@@ -319,11 +323,23 @@ def make_figures(
         bbox_to_anchor=(0.5, 0.995),
     )
     fig.tight_layout(rect=(0.0, 0.0, 1.0, 0.93))
+    if risk_png is not None:
+        fig.savefig(risk_png, dpi=220, bbox_inches="tight")
+    fig.savefig(risk_pdf, bbox_inches="tight", metadata=PDF_METADATA)
+    plt.close(fig)
+
+
+def make_figures(
+    output: Path, summary_rows: list[dict], sample_sizes: tuple[int, ...],
+) -> list[Path]:
+    figure_dir = output / "figures"
+    figure_dir.mkdir()
+    lookup = summary_lookup(summary_rows)
+    labels, colors, method_labels = SCENARIO_LABELS, METHOD_COLORS, METHOD_LABELS
+
     risk_png = figure_dir / "population_projection_risk.png"
     risk_pdf = figure_dir / "population_projection_risk.pdf"
-    fig.savefig(risk_png, dpi=220, bbox_inches="tight")
-    fig.savefig(risk_pdf, bbox_inches="tight")
-    plt.close(fig)
+    plot_population_risk(summary_rows, sample_sizes, risk_pdf, risk_png)
 
     fig, axes = plt.subplots(2, 3, figsize=(11.2, 6.3), sharex=True)
     line_styles = ("--", "-", ":", "-.")

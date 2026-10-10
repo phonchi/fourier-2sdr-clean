@@ -16,6 +16,10 @@
       "bytes": 3211,
       "sha256": "0fa0e0a4631949d220797476abfbb0529375b9e61a5c700b8b11208565f023cc"
     },
+    "summary.csv": {
+      "bytes": 144350,
+      "sha256": "25b8fa95c793fe9dbfe51720de1983300d5903501c765af9e31d32bc3cba8ed6"
+    },
     "summary.json": {
       "bytes": 2013,
       "sha256": "1d205c9e6419f6f3a716dd4a0919c700f9a63e87d8a4d8c263521650895bb149"
