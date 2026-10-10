@@ -222,11 +222,11 @@ intentional update):
 `tests/test_results.py` verifies the size and SHA-256 of every file in
 `results/` against its manifest and runs `make_paper_assets.py --check`;
 `tests/test_colored_70s.py` checks the three Section 6.5 tables against the
-hashes of the manuscript copies. The in-text numbers of Section 6.5 come from
+manuscript copies in `results/paper-assets/`. The in-text numbers of Section 6.5 come from
 three scripts in `experiments/colored_70s/`:
 
 ```bash
-python experiments/colored_70s/envelope_reduction.py --results-dir results        # MSE reduction over same-sample envelopes
+python experiments/colored_70s/nontest_reference.py --summarize results/colored-70s/reference_tuhhi_nontest/reference_tuhhi_nontest.csv  # reduction over the non-test Tu-HHI reference
 python experiments/colored_70s/estimated_spectrum_summary.py --results-dir results  # estimated versus known spectrum
 python experiments/colored_70s/summarize.py OUT --max-realizations 10 results/colored-70s/formal_rho06  # per-condition means with 95% intervals
 ```

@@ -79,17 +79,22 @@ and B) takes about five minutes on CPU. The 70S stacks are expected under
 
 ```bash
 python experiments/colored_70s/make_tables.py --results-dir results --output-dir OUT
-python experiments/colored_70s/envelope_reduction.py --results-dir results
+python experiments/colored_70s/nontest_reference.py --summarize results/colored-70s/reference_tuhhi_nontest/reference_tuhhi_nontest.csv
 python experiments/colored_70s/estimated_spectrum_summary.py --results-dir results
 python experiments/colored_70s/summarize.py OUT/summary --max-realizations 10 results/colored-70s/formal_rho06
 ```
 
 - `make_tables.py` writes Table S2 (calibration, from
   `results/whitened-calibration/`), Table 5 (Part B) and Table S3 (Part A).
-- `envelope_reduction.py` reports the reduction in test MSE of the
-  holdout-selected estimator relative to the 2SDR candidate at the grid point
-  nearest the same-sample envelope (35.6-45.8% under white noise, 43.1-68.1%
-  under colored noise).
+- `nontest_reference.py` reports the reduction in test MSE of the
+  holdout-selected estimator relative to the whitened same-sample Tu--HHI
+  procedure run on the 4,000 non-test particles and evaluated at its selected
+  `(p, q, r)` on the same test particles (Supplementary Section S7.D):
+  condition means 32.3-41.0% under white noise and 39.4-68.3% under colored
+  noise.  Its frozen output is `results/colored-70s/reference_tuhhi_nontest/`;
+  `--output-dir DIR [--smoke]` recomputes it from the 70S data (about 15
+  minutes on CPU) and checks seeds, noise variances, and mean-only test MSE
+  against the frozen Part B outputs.
 - `estimated_spectrum_summary.py` compares Part B with the estimated and the
   known spectrum on paired realizations: 9 of 15 selections share family and
   envelope (all with `r = 49`), the mean test MSE rises by 0.76%, 0.37% and

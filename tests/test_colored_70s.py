@@ -54,12 +54,12 @@ class FrozenTablesTest(unittest.TestCase):
         self.assertEqual(rises, [0.76, 0.37, 0.55])
         self.assertLess(summary["max_within_lowest"], 3e-4)
 
-    def test_envelope_reduction_ranges(self) -> None:
-        cut, _ = _module("colored_70s_envelope", STUDY / "envelope_reduction.py").reductions(RESULTS)
-        means = {k: sum(v) / len(v) for k, v in cut.items()}
-        white = [v for k, v in means.items() if k[0] == "0.0"]
-        colored = [v for k, v in means.items() if k[0] != "0.0"]
-        self.assertEqual((round(100 * min(white)), round(100 * max(colored))), (36, 68))
+    def test_nontest_reference_ranges(self) -> None:
+        summary = _module("colored_70s_nontest", STUDY / "nontest_reference.py").summarize(
+            RESULTS / "colored-70s" / "reference_tuhhi_nontest" / "reference_tuhhi_nontest.csv")
+        self.assertEqual(summary["realizations"], 75)
+        self.assertEqual([round(100 * summary[k]) for k in
+                          ("white_min", "white_max", "colored_min", "colored_max")], [32, 41, 39, 68])
 
 
 if __name__ == "__main__":

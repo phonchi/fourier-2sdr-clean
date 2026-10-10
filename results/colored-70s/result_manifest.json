@@ -40,6 +40,10 @@
       "bytes": 882566,
       "sha256": "606e93d420b29ed2f90532a3b9005c8a6b5f0dacd2a6417a2c6799567d0fb654"
     },
+    "reference_tuhhi_nontest/reference_tuhhi_nontest.csv": {
+      "bytes": 11133,
+      "sha256": "83a3edd1af32310581352209f6accb1e1b4c4b9d92358f3cf0970e7b73ea2f6e"
+    },
     "sensitivity_rho03/part_a_pixel_mse.csv": {
       "bytes": 3759,
       "sha256": "8d8095ad95aa666aa562957a6f4387892a3abe23cc7321cc4e4115166bf245f0"
