@@ -311,6 +311,10 @@ def plot_population_risk(
                     linewidth=1.6, capsize=2.5, color=colors[method], label=method_labels[method],
                 )
             ax.set_xscale("log")
+            ax.set_xlim(200, 6500)
+            ax.set_xticks(list(sample_sizes))
+            ax.set_xticklabels([str(n) for n in sample_sizes])
+            ax.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
             ax.grid(alpha=0.25)
             ax.set_title(f"{labels[scenario]}\nSNR {snr:.2f}")
             if col_index == 0:
