@@ -46,7 +46,7 @@ def same_sample_table() -> str:
         r"\begin{table}[tbp]",
         r"\centering",
         r"\small",
-        r"\caption{Conditional per-coordinate clean-prediction risk under same-sample",
+        r"\caption{Conditional per-coordinate reconstruction risk under same-sample",
         r"selection.  Entries are means (standard deviations), multiplied by",
         r"$10^3$, over 100 training-sample replicates.}",
         r"\label{tab:algorithm-risk}",
