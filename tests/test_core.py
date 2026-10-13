@@ -10,7 +10,6 @@ from fourier_2sdr import (
     fit_2sdr,
     real_fourier_inverse,
     real_fourier_transform,
-    select_corrected_holdout,
     select_tu_hhi,
 )
 from fourier_2sdr.fourier import real_fourier_basis
@@ -156,7 +155,7 @@ class TwoSDRTest(unittest.TestCase):
         self.assertEqual(fit.reconstruct(values).shape, values.shape)
         torch.testing.assert_close(fit.ambient_basis.mT @ fit.ambient_basis, torch.eye(4, dtype=values.dtype))
 
-    def test_both_reported_selection_routes_return_valid_fits(self) -> None:
+    def test_tu_hhi_selection_returns_valid_fit(self) -> None:
         values = self.sample()
         nested = select_tu_hhi(
             values,
@@ -168,19 +167,6 @@ class TwoSDRTest(unittest.TestCase):
         self.assertEqual(nested.method, "nested_tu_hhi")
         self.assertIn(nested.ranks[:2], ((2, 2), (2, 3), (3, 2), (3, 3)))
         self.assertLessEqual(nested.ranks[2], 4)
-
-        holdout = select_corrected_holdout(
-            values[:16],
-            values[16:32],
-            ((2, 2), (2, 3), (3, 3)),
-            0.04,
-            gic_coefficients=values[32:],
-            max_core_rank=4,
-            max_iter=50,
-        )
-        self.assertEqual(holdout.method, "corrected_holdout_hhi")
-        self.assertIn(holdout.ranks[:2], ((2, 2), (2, 3), (3, 3)))
-        self.assertLessEqual(holdout.ranks[2], 4)
 
 
 if __name__ == "__main__":

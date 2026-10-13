@@ -2,7 +2,7 @@
 
 from .fourier import real_fourier_inverse, real_fourier_transform
 from .model import TwoSDRFit, fit_2sdr
-from .selection import RankSelection, select_corrected_holdout, select_tu_hhi
+from .selection import RankSelection, select_tu_hhi
 
 __all__ = [
     "RankSelection",
@@ -10,7 +10,6 @@ __all__ = [
     "fit_2sdr",
     "real_fourier_inverse",
     "real_fourier_transform",
-    "select_corrected_holdout",
     "select_tu_hhi",
 ]
 

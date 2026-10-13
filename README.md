@@ -132,15 +132,10 @@ estimate = whitened_projection(Z_score.reshape(len(Z_score), -1), mean, basis, s
 score = corrected_holdout_score(Z_score, estimate, basis, omega)   # per-coordinate risk estimate
 ```
 
-The package also exports `select_corrected_holdout`, a simplified holdout
-route: it fits each `(p, q)` candidate on one allocation, scores it with the
-covariance-corrected holdout residual on a second, and selects `r` by HHI GIC
-on an optional third allocation (if the third allocation is omitted, the score
-allocation is reused and the Stage-II choice is not independently validated).
-It does not whiten and compares envelope candidates only. The complete-estimator
-selection reported in Section 6.5, which scores 2SDR candidates in raw and
-whitened coordinates together with MPCA, PCA, and mean-only candidates on the
-original pixel scale, is implemented in `experiments/colored_70s/run_experiment.py`.
+The complete-estimator selection reported in Section 6.5, which scores 2SDR
+candidates in raw and whitened coordinates together with MPCA, PCA, and
+mean-only candidates on the original pixel scale, is implemented in
+`experiments/colored_70s/run_experiment.py`.
 
 ## Reproducing the paper
 
@@ -253,7 +248,7 @@ Run the notebooks from the repository root after
 
 ```text
 src/fourier_2sdr/     real Fourier coordinates (fourier.py), fixed-rank 2SDR (model.py),
-                      Tu/HHI and corrected-holdout selection (selection.py),
+                      Tu/HHI selection (selection.py),
                       whitening and the corrected holdout score (whitening.py),
                       MRC input (io.py), experiment dispatcher (experiments.py)
 experiments/          one folder per numerical study: runner, protocol.json, README
