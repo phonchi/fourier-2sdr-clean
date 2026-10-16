@@ -101,6 +101,12 @@ def calibration_table(results_dir: Path) -> str:
     return "\n".join(lines)
 
 
+def same_estimator(a, b) -> bool:
+    """Whether two candidates differ only in raw versus whitened coordinates."""
+    strip = lambda name: name.removeprefix("raw_").removeprefix("white_")
+    return strip(a["candidate"]) == strip(b["candidate"])
+
+
 def part_b_table(results_dir: Path) -> str:
     rows = load(results_dir, "part_b_candidates.csv")
     groups = collections.defaultdict(list)
@@ -119,8 +125,8 @@ def part_b_table(results_dir: Path) -> str:
              r"MSE among all considered candidates.  The last three "
              r"columns give mean test MSE $\times10^{4}$ for the selected 2SDR estimator and "
              r"for the PCA and full-core MPCA candidates with the best score.  Under white "
-             r"noise raw and whitened fits coincide up to numerical error and are counted "
-             r"as separate candidates.}",
+             r"noise whitening is a uniform rescaling, so raw and whitened fits coincide "
+             r"and are counted as one candidate.}",
              r"\label{tab:colored-70s}",
              r"\begin{tabular}{rllrrrr}", r"\toprule",
              r" & & & selected test-MSE & \multicolumn{3}{c}{test MSE $\times10^{4}$}\\",
@@ -140,9 +146,13 @@ def part_b_table(results_dir: Path) -> str:
                 cands = groups[k]
                 pick = min(cands, key=lambda r: float(r["split_sure"]))
                 oracle = min(cands, key=lambda r: float(r["test_true_risk"]))
-                hits += pick is oracle
-                # At rho = 0 whitening is the identity, so raw and whitened
-                # candidates coincide; report them as 2SDR.
+                # At rho = 0 whitening is a uniform rescaling, so raw and
+                # whitened fits coincide and count as one candidate; report
+                # them as 2SDR.
+                if rho == "0.0":
+                    hits += same_estimator(pick, oracle)
+                else:
+                    hits += pick is oracle
                 fam["2sdr" if rho == "0.0" else pick["family"]] += 1
                 triples[(int(pick["p"]), int(pick["q"]), int(pick["r"]))] += 1
                 pick_test.append(float(pick["test_true_risk"]))

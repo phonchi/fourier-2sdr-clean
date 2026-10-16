@@ -2,7 +2,7 @@
 \centering
 \small
 \setlength{\tabcolsep}{5pt}
-\caption{Complete-estimator selection by the corrected holdout score on the 70S particles under white and colored noise, over 10 noise realizations at $\rho=0.6$ and 5 otherwise.  The corrected holdout score selected 2SDR in all 75 realizations.  The coordinate choices indicated in the group headings were consistent across all realizations within each noise condition.  The second and third columns give the most frequent selected $(p,q,r)$ and its frequency, with equally frequent triples listed together; the fourth gives the number of realizations in which the corrected holdout score selects the candidate with the lowest empirical test MSE among all considered candidates.  The last three columns give mean test MSE $\times10^{4}$ for the selected 2SDR estimator and for the PCA and full-core MPCA candidates with the best score.  Under white noise raw and whitened fits coincide up to numerical error and are counted as separate candidates.}
+\caption{Complete-estimator selection by the corrected holdout score on the 70S particles under white and colored noise, over 10 noise realizations at $\rho=0.6$ and 5 otherwise.  The corrected holdout score selected 2SDR in all 75 realizations.  The coordinate choices indicated in the group headings were consistent across all realizations within each noise condition.  The second and third columns give the most frequent selected $(p,q,r)$ and its frequency, with equally frequent triples listed together; the fourth gives the number of realizations in which the corrected holdout score selects the candidate with the lowest empirical test MSE among all considered candidates.  The last three columns give mean test MSE $\times10^{4}$ for the selected 2SDR estimator and for the PCA and full-core MPCA candidates with the best score.  Under white noise whitening is a uniform rescaling, so raw and whitened fits coincide and are counted as one candidate.}
 \label{tab:colored-70s}
 \begin{tabular}{rllrrrr}
 \toprule
@@ -13,7 +13,7 @@ $s_0$ & selected $(p,q,r)$ & frequency & minimizer (count) & 2SDR & PCA & MPCA\\
 \multicolumn{7}{@{}l}{\itshape White noise ($\rho=0$)}\\
 .04 & $(24,20,49)$ & (4/5) & 5/5 & 0.949 & 2.027 & 2.371\\
 .05 & $(24,24,49)$ & (4/5) & 5/5 & 0.801 & 1.762 & 2.099\\
-.06 & $(24,24,49)$ & (5/5) & 4/5 & 0.696 & 1.554 & 1.865\\
+.06 & $(24,24,49)$ & (5/5) & 5/5 & 0.696 & 1.554 & 1.865\\
 \addlinespace
 \multicolumn{7}{@{}l}{\itshape Colored noise ($\rho=0.3$, raw selected)}\\
 .04 & $(40,40,49)$ & (5/5) & 5/5 & 0.828 & 1.178 & 2.370\\

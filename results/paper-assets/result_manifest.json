@@ -5,24 +5,24 @@
       "sha256": "0524acf207c193383368ff4d6cd00a10868094cd00d0c0cd240fc28b546f3d6e"
     },
     "paper1_colored_70s.tex": {
-      "bytes": 2355,
-      "sha256": "ba5117e0a8d2adc14fe93317823344f8ba27e0d37de443994e3291830efd16cb"
+      "bytes": 2364,
+      "sha256": "4e11f81f19c16a515c10e81116e30b587b2de5b347264a5599269ee1e213d3f4"
     },
     "paper1_colored_70s_partA.tex": {
       "bytes": 2682,
       "sha256": "85de72d6979e74ec591351bde3d7f5282b6d8cd88944f1fb382c9f0ada8ea2b7"
     },
     "paper1_colored_calibration.tex": {
-      "bytes": 1085,
-      "sha256": "422b058f2624442508d967fe5f206f59407e45daa2c44e9a7bc3de21678593ea"
+      "bytes": 1078,
+      "sha256": "ac60eeab4f98b9b7cf207adaedddf116d2b2891c03e3b0fc46a6e9fa47d0378f"
     },
     "paper_70s_montage.png": {
       "bytes": 2064753,
       "sha256": "56d1bcc3524931849e81f87c39921258797bd31b793bbfae419a6f5dcd17b10f"
     },
     "supplement_projection_family_risk.pdf": {
-      "bytes": 32159,
-      "sha256": "01937fd445e719ecc4fe15e651253b5d9ac443c80603e0ce354facf1d0f56569"
+      "bytes": 32347,
+      "sha256": "f17241f4d9d7dbea102122607f06b0223c1d93edb054aa7180777ce34530b6f9"
     },
     "supplement_projection_family_table.tex": {
       "bytes": 847,
