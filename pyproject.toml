@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "fourier-2sdr"
 version = "0.1.0"
 description = "Clean reference implementation for Fourier-domain two-stage dimension reduction"
+license = {text = "MIT"}
 requires-python = ">=3.11"
 dependencies = [
   "numpy>=2.0",

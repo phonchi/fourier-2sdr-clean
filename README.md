@@ -259,9 +259,14 @@ notebooks/            teaching notebook and packing benchmark
 tests/                unit tests, result-manifest and asset-regeneration checks
 ```
 
+## License
+
+MIT; see `LICENSE`.
+
 ## Citation
 
 If you use this code, please cite the paper:
 
-> *Fourier-Domain Two-Stage Dimension Reduction for Image Applications*
-> (authors and venue to be added).
+> Szu-Chi Chung, Guan-Chin Huang, and Ting-Hung Yu.
+> *Fourier-Domain Two-Stage Dimension Reduction for Image Applications*.
+> Manuscript under review.

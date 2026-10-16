@@ -39,16 +39,16 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 
 
 def same_sample_table() -> str:
-    """Table 3: conditional per-coordinate risk under same-sample selection."""
+    """Table 3: conditional per-coordinate MSE under same-sample selection."""
     rows = read_csv(RESULTS / "same-sample-selection/per_replicate.csv")
     methods = ("risk_two_sdr_sure_hhi", "risk_vector_pca_hhi", "risk_mpca_sure_full_core")
     lines = [
         r"\begin{table}[tbp]",
         r"\centering",
         r"\small",
-        r"\caption{Conditional per-coordinate reconstruction risk under same-sample",
+        r"\caption{Conditional per-coordinate reconstruction MSE under same-sample",
         r"selection.  Entries are means (standard deviations), multiplied by",
-        r"$10^3$, over 100 training-sample replicates.}",
+        r"$10^3$, over 100 fitting-sample replicates.}",
         r"\label{tab:algorithm-risk}",
         r"\begin{tabular}{rrlrrr}",
         r"\toprule",
