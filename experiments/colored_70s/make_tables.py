@@ -196,7 +196,7 @@ def part_a_table(results_dir: Path) -> str:
              r"$(p,q,r)$ and its frequency; a dagger indicates that no unique modal triple is "
              r"reported, in which case the ranges of the three dimensions are shown.  The "
              r"$\rho=0$ results use the five additional white-noise realizations of the "
-             r"complete-estimator study (Table~5 of the main text).}",
+             r"complete-estimator study (Table~\ref{tab:colored-70s}).}",
              r"\label{tab:supp-colored-partA}",
              r"\textit{(a) Reconstruction MSE $\times10^{4}$}\\[2pt]",
              r"\begin{tabular}{rrrrrrrr}", r"\toprule",
