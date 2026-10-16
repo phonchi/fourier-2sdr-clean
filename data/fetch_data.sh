@@ -4,7 +4,7 @@
 # Everything else in this repository runs without external data.
 #
 #   ./data/fetch_data.sh 70s      synthetic cryo-EM stacks, 1.9 GB, from this
-#                                 repository's datasets-v1 release (needs gh)
+#                                 repository's datasets-v1 release (gh or curl)
 #
 # Each archive is checked against the SHA-256 recorded when the study ran.  A
 # mismatch stops the script: a silently different input would invalidate every
@@ -13,7 +13,7 @@ set -Eeuo pipefail
 
 repo_root="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
 seventy_s_root="${repo_root}/data/70s"
-
+release_url="https://github.com/phonchi/fourier-2sdr-clean/releases/download/datasets-v1"
 
 declare -A SEVENTY_S_SHA=(
   [70s_white_on_black_snr004_seed0.tar]=2a4be66fe8951bac38aefe1f2e05541afc319337300659bc49554495156c7ee8
@@ -23,6 +23,18 @@ declare -A SEVENTY_S_SHA=(
 
 need() {
   command -v "$1" >/dev/null 2>&1 || { echo "$1 is required but was not found on PATH." >&2; exit 127; }
+}
+
+download() {  # download <asset name> <target directory>
+  # gh when it is installed and logged in; otherwise curl on the public URL.
+  if command -v gh >/dev/null 2>&1 && gh auth status >/dev/null 2>&1; then
+    gh release download datasets-v1 --repo phonchi/fourier-2sdr-clean \
+      --pattern "$1" --dir "$2"
+  else
+    need curl
+    curl -fL --retry 3 -o "$2/$1.part" "${release_url}/$1"
+    mv -- "$2/$1.part" "$2/$1"
+  fi
 }
 
 check() {  # check <file> <expected sha256>
@@ -38,15 +50,13 @@ check() {  # check <file> <expected sha256>
 }
 
 fetch_70s() {
-  need gh
   mkdir -p -- "${seventy_s_root}"
   echo "70S cells -> ${seventy_s_root}"
   for name in "${!SEVENTY_S_SHA[@]}"; do
     local archive="${seventy_s_root}/${name}"
     if [ ! -f "${archive}" ]; then
       echo "  downloading ${name} (647 MB)"
-      gh release download datasets-v1 --repo phonchi/fourier-2sdr-clean \
-        --pattern "${name}" --dir "${seventy_s_root}"
+      download "${name}" "${seventy_s_root}"
     fi
     check "${archive}" "${SEVENTY_S_SHA[$name]}"
     tar -xf "${archive}" -C "${seventy_s_root}"

@@ -171,9 +171,24 @@ and verified by
 ./data/fetch_data.sh 70s
 ```
 
-which fetches the archives from this repository's `datasets-v1` release with
-the GitHub CLI (`gh`), checks each against its recorded SHA-256, and extracts
-them into `data/70s/`. Everything else runs without external data.
+which fetches the archives from this repository's `datasets-v1` release
+(with the GitHub CLI `gh` when it is installed and logged in, otherwise with
+`curl`), checks each against its recorded SHA-256, and extracts them into
+`data/70s/`. Everything else runs without external data. The same steps by
+hand, with `curl` only:
+
+```bash
+mkdir -p data/70s && cd data/70s
+for snr in 004 005 006; do
+  curl -fLO "https://github.com/phonchi/fourier-2sdr-clean/releases/download/datasets-v1/70s_white_on_black_snr${snr}_seed0.tar"
+done
+sha256sum -c <<'SHA'
+2a4be66fe8951bac38aefe1f2e05541afc319337300659bc49554495156c7ee8  70s_white_on_black_snr004_seed0.tar
+8fb7a912cd22ea5e5de2100723c04971926ac443881393ee1650bda8ebbaeb3f  70s_white_on_black_snr005_seed0.tar
+e820289b75e4fc534e58a012343f2706c153a09ad6a069b4a86cc7b65d10529b  70s_white_on_black_snr006_seed0.tar
+SHA
+for f in 70s_white_on_black_snr00?_seed0.tar; do tar -xf "$f" && rm -f -- "$f"; done
+```
 
 Reruns of the frozen designs were checked against the committed outputs: a
 full rerun of Section 6.4 reproduced the selected `(p, q, r)` and PCA ranks
