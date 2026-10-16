@@ -7,8 +7,8 @@
 #                                 repository's datasets-v1 release (gh or curl)
 #
 # Each archive is checked against the SHA-256 recorded when the study ran.  A
-# mismatch stops the script: a silently different input would invalidate every
-# number the run reports.
+# mismatch removes the file and stops the script: a silently different input
+# would invalidate every number the run reports.
 set -Eeuo pipefail
 
 repo_root="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
@@ -44,6 +44,8 @@ check() {  # check <file> <expected sha256>
     echo "SHA-256 mismatch for $1" >&2
     echo "  expected ${2}" >&2
     echo "  actual   ${actual}" >&2
+    rm -f -- "$1"
+    echo "Removed the mismatched file; rerun this script to download it again." >&2
     exit 1
   fi
   echo "  sha256 ok"
